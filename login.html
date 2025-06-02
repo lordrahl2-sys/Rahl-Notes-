@@ -6,52 +6,80 @@
   <title>Login - Darken Rahl</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #0e0e0e;
+      background-color: #0f0f0f;
       color: #fff;
+      font-family: Arial, sans-serif;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       margin: 0;
     }
-    .login-container {
-      background: #1a1a1a;
-      padding: 2rem;
+    .container {
+      background: #1c1c1c;
+      padding: 30px;
       border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px #000;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      width: 300px;
     }
-    input {
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="email"],
+    input[type="password"] {
       width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
+      padding: 10px;
+      margin: 8px 0;
+      background: #2c2c2c;
       border: none;
+      color: white;
       border-radius: 8px;
     }
     button {
-      background: #0077ff;
-      color: #fff;
-      padding: 0.75rem;
       width: 100%;
+      padding: 10px;
+      background: #0077ff;
       border: none;
+      color: white;
+      font-weight: bold;
       border-radius: 8px;
-      margin-top: 1rem;
       cursor: pointer;
+      margin-top: 10px;
     }
-    .suggestion {
-      font-size: 0.85rem;
-      color: #ccc;
+    .generate {
+      font-size: 12px;
+      margin-top: 5px;
+      text-align: center;
+      cursor: pointer;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Login to Darken Rahl</h2>
-    <form>
-      <input type="email" placeholder="Email" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <div class="suggestion" id="suggestion"></div>
-      <button type="submit">Login
+  <div class="container">
+    <h2>Login</h2>
+    <input type="email" placeholder="Email" id="email" required />
+    <input type="password" placeholder="Password" id="password" required />
+    <div class="generate" onclick="generatePassword()">Suggest Strong Password</div>
+    <button onclick="login()">Login</button>
+  </div>
+
+  <script>
+    function generatePassword() {
+      const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+      let password = "";
+      for (let i = 0; i < 12; i++) {
+        password += charset[Math.floor(Math.random() * charset.length)];
+      }
+      document.getElementById("password").value = password;
+    }
+
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      alert("Login requested for " + email + " with password: " + password);
+    }
+  </script>
+</body>
+</html>
