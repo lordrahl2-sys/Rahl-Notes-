@@ -1,23 +1,75 @@
-my-website/
-│
-├── index.html           # Homepage
-├── login.html           # Login page
-├── register.html        # Signup page
-├── dashboard.html       # User/admin dashboard
-├── notes.html           # PDF upload/download
-├── chatbot.html         # AI assistant
-│
-├── assets/
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   ├── main.js
-│   │   └── auth.js
-│   └── images/
-│       └── logo.png
-│
-├── manifest.json        # For PWA support
-├── service-worker.js    # For offline support
-├── server.js            # Backend server (Node.js/Express)
-├── package.json         # Node.js dependencies
-└── database/            # User data, uploaded files
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rahl Notes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1d1e22, #343a40);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    header {
+      padding: 2rem 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #ccc;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    a {
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Rahl Notes 📚</h1>
+    <p>Your smart place to upload, share, and explore PDF notes.</p>
+  </header>
+
+  <nav>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+    <a href="notes.html">View Notes</a>
+  </nav>
+
+  <footer>
+    &copy; 2025 Rahl Notes. All rights reserved.
+  </footer>
+</body>
+</html>
