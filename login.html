@@ -3,18 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - Lord Rahl</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Login - Darken Rahl</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px #000;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 8px;
+    }
+    button {
+      background: #0077ff;
+      color: #fff;
+      padding: 0.75rem;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .suggestion {
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Login to Lord Rahl</h2>
-    <form action="#" method="POST">
+  <div class="login-container">
+    <h2>Login to Darken Rahl</h2>
+    <form>
       <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-      <p>Don't have an account? <a href="signup.html">Sign up</a></p>
-    </form>
-  </div>
-</body>
-</html>
+      <input type="password" id="password" placeholder="Password" required />
+      <div class="suggestion" id="suggestion"></div>
+      <button type="submit">Login
