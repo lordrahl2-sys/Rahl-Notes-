@@ -9,25 +9,31 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1f1f2e, #2d2d44);
-      color: white;
+    html, body {
       margin: 0;
       padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      overflow: hidden;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
 
     .container {
-      background-color: #2f2f3f;
+      position: relative;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
       padding: 2rem;
       width: 90%;
       max-width: 400px;
+      margin: 10% auto;
+      color: white;
       text-align: center;
     }
 
@@ -81,6 +87,8 @@
 </head>
 <body>
 
+  <canvas id="solarCanvas"></canvas>
+
   <div class="container">
     <h2 id="form-title">Login to Rahl Notes</h2>
 
@@ -102,6 +110,7 @@
   </div>
 
   <script>
+    // Switch between login and signup
     const loginForm = document.getElementById("login-form");
     const signupForm = document.getElementById("signup-form");
     const formTitle = document.getElementById("form-title");
@@ -117,7 +126,53 @@
         formTitle.textContent = "Create Your Rahl Notes Account";
       }
     }
-  </script>
 
+    // Solar system animation
+    const canvas = document.getElementById('solarCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const sun = { x: canvas.width / 2, y: canvas.height / 2, r: 30 };
+    const planets = [
+      { r: 5, dist: 60, angle: 0, speed: 0.01, color: '#ff6347' },
+      { r: 7, dist: 100, angle: 0, speed: 0.007, color: '#87cefa' },
+      { r: 9, dist: 140, angle: 0, speed: 0.005, color: '#daa520' },
+    ];
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Sun
+      ctx.beginPath();
+      ctx.arc(sun.x, sun.y, sun.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'yellow';
+      ctx.fill();
+
+      // Planets
+      planets.forEach(p => {
+        p.angle += p.speed;
+        const x = sun.x + Math.cos(p.angle) * p.dist;
+        const y = sun.y + Math.sin(p.angle) * p.dist;
+
+        ctx.beginPath();
+        ctx.arc(x, y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    // Responsive canvas
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
